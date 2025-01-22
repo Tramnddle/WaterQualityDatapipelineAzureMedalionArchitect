@@ -1,100 +1,54 @@
-README
+# Comprehensive Data Pipeline
 
-Project Description
+This project implements a comprehensive data pipeline to process and analyze large datasets, leveraging Azure services for data ingestion, transformation, and visualization. It is designed to integrate data from diverse sources, ensuring high-quality outputs for analytics and insights.
 
-Business Overview
+## Project Overview
 
-A well-incorporated pipeline is a critical data engineering practice designed to integrate data from various sources, such as on-premise databases, cloud-managed databases, CSV, XML, log files, Data Warehouses, and API endpoints. This data is transformed through a comprehensive data pipeline (cloud/on-premise), which is then used to generate meaningful insights for analytics.
+### Key Features
+- **Complex Workflow Handling**: Cloud-based pipelines enable scalable and robust data processing.
+- **Data Quality Assurance**: Medallion architecture ensures data accuracy and reliability.
+- **Data Extraction**: Retrieves data from Azure-managed SQL Database for processing.
+- **Analysis Efficiency**: Loads essential, high-quality data for visualization, minimizing overhead.
 
-Comprehensive data pipelines are fundamental for organizations aiming to efficiently manage large volumes of data, reducing manual intervention. By deploying such infrastructure, organizations can fully leverage their data to drive business growth. Applications of these pipelines span across industries, including e-commerce platforms, product companies, startups, and government agencies.
+### Benefits of Azure Services
+- **Seamless Connectivity**: Integrates data from diverse sources.
+- **Efficient Orchestration**: Automated workflows with Azure Data Factory.
+- **High Availability**: Durable and reliable pipeline performance.
 
-Key Features
+---
+![Azure Diagram Architecture](https://github.com/Tramnddle/WaterQualityDatapipelineAzureMedalionArchitect/blob/1d907f74dc72a5b5a99ecaa85c67c1945bd7349e/Medalion%20Architecture.png)
+## Pipeline Flow
 
-Complex Workflow Handling: Seamless management of complex data workflows using cloud-based pipelines that offer scalability and robustness.
+1. **Data Extraction**: Azure Logic App pulls data from an Azure-managed SQL Database.
+2. **Raw Data Storage**: Raw data is stored in Azure Blob Storage and structured in ADLS Gen2.
+3. **Orchestration**: Data is moved from Blob Storage to ADLS Gen2 using Azure Data Factory.
+4. **Data Transformation**: Medallion architecture transforms data into Bronze (raw), Silver (cleaned), and Gold (ready-to-use) layers.
+5. **Visualization**: Power BI visualizes the processed data for actionable insights.
 
-Data Quality Assurance: Implementation of medallion architecture in the Databricks workspace ensures data accuracy, cleaning, transformation, and outlier detection.
+---
 
-Data Extraction: Data is fetched from Azure-managed SQL Database and converted into a cohesive format.
+## Data Description
 
-Analysis Efficiency: High-quality, essential data is loaded into the final layer for visualization, minimizing overhead and enhancing performance.
+### Dataset Overview
+- **Size**: Over 1 million rows, 32 columns.
+- **Features**:
+  - Country and water body categories.
+  - Determinands information (concentration levels, timestamps).
+  - Quality samples (conducted vs. total).
 
-Wide-ranging and thoroughly planned ETL pipelines apply predefined business rules and transformations to ensure high-quality outcomes, including logistics optimization, user engagement rate improvements, and predictive sales trend analysis. Azure services’ integration facilitates data ingestion, transformation, and analysis with seamless connectivity and orchestration.
+### Notes
+Each data point is tied to a specific country and monitoring site, providing detailed insights into water quality across Europe.
 
-Aim
+---
 
-This project aims to analyze large water sensor datasets collected across European countries using Azure Services. The goal is to leverage Azure's capabilities to manage workflows, analyze raw data, and generate actionable insights while maintaining high standards of data management and pipeline efficiency.
+## How to Use
 
-Data Description
+### Prerequisites
+- **Azure Account**: Access to services like SQL Database, Blob Storage, Data Factory, and Power BI.
+- **Development Environment**: Python and Power BI installed locally.
 
-The dataset comprises over one million rows and 32 columns of water sensor data collected across various European countries. Key features include:
-
-Country and Water Body Category
-
-Determinands Information: Concentration levels (minimum, maximum, mean, and median) at specific timestamps
-
-Quality Samples: Conducted vs. total samples for each observation
-
-Each value is tied to a specific country and monitoring site, providing a detailed view of determinand content over time.
-
-Approach
-
-1. Data Extraction
-
-Data was initially available in an Azure-managed SQL database bucket.
-
-An Azure Logic App was created to pull data from the Azure-managed SQL Database.
-
-2. Raw Data Storage
-
-Azure Blob Storage was set up to store raw data from the SQL Server database.
-
-Azure Data Lake Storage (ADLS) Gen2 with hierarchical space enabled was created to store structured data.
-
-3. Orchestration
-
-Azure Data Factory orchestrated data movement from Azure Blob Storage to ADLS Gen2.
-
-4. Data Transformation
-
-The medallion architecture was implemented with three layers:
-
-Bronze Layer: Raw data storage
-
-Silver Layer: Cleaned and processed data
-
-Gold Layer: High-quality, analysis-ready data
-
-5. Visualization
-
-Cleaned data was retrieved from a Hive metastore database.
-
-Power BI was used to generate insights through advanced visualizations.
-
-Benefits of Azure Services
-
-Azure services provide integrated data management capabilities to streamline ingestion, transformation, and analysis. Key advantages include:
-
-Seamless Connectivity: Across diverse data sources
-
-Efficient Orchestration: Through Azure Data Factory
-
-Durability and Availability: Ensuring stable and efficient pipeline performance
-
-How to Use
-
-Clone this repository to your local machine.
-
-Ensure your Azure account and necessary services (SQL Database, Blob Storage, Data Factory, etc.) are set up.
-
-Follow the steps outlined in the Approach section to replicate the pipeline setup.
-
-Use Power BI to visualize the processed data.
-
-Contributing
-
-Contributions are welcome! Please fork this repository and submit a pull request with detailed explanations of your changes.
-
-License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
+### Steps
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/yourusername/data-pipeline.git
+   cd data-pipeline
